@@ -44,12 +44,23 @@ static void associate_file_extension(const wchar_t* exe_path) {
         RegSetValueExW(hKey, L"", 0, REG_SZ, (LPBYTE)L"UPlusPlusScript", (DWORD)(wcslen(L"UPlusPlusScript") + 1) * sizeof(wchar_t));
         RegCloseKey(hKey);
     }
+    if (RegCreateKeyExW(HKEY_CURRENT_USER, L"Software\\Classes\\UPlusPlusScript", 0, NULL, 0, KEY_WRITE, NULL, &hKey, NULL) == ERROR_SUCCESS) {
+        RegSetValueExW(hKey, L"", 0, REG_SZ, (LPBYTE)L"U++ (Ukrainian++) Script", (DWORD)(wcslen(L"U++ (Ukrainian++) Script") + 1) * sizeof(wchar_t));
+        RegCloseKey(hKey);
+    }
+    if (RegCreateKeyExW(HKEY_CURRENT_USER, L"Software\\Classes\\UPlusPlusScript\\DefaultIcon", 0, NULL, 0, KEY_WRITE, NULL, &hKey, NULL) == ERROR_SUCCESS) {
+        wchar_t icon_path[MAX_PATH + 8];
+        swprintf(icon_path, MAX_PATH + 8, L"\"%s\",0", exe_path);
+        RegSetValueExW(hKey, L"", 0, REG_SZ, (LPBYTE)icon_path, (DWORD)(wcslen(icon_path) + 1) * sizeof(wchar_t));
+        RegCloseKey(hKey);
+    }
     if (RegCreateKeyExW(HKEY_CURRENT_USER, L"Software\\Classes\\UPlusPlusScript\\shell\\open\\command", 0, NULL, 0, KEY_WRITE, NULL, &hKey, NULL) == ERROR_SUCCESS) {
         wchar_t cmd[MAX_PATH + 32];
         swprintf(cmd, MAX_PATH + 32, L"\"%s\" \"%%1\"", exe_path);
         RegSetValueExW(hKey, L"", 0, REG_SZ, (LPBYTE)cmd, (DWORD)(wcslen(cmd) + 1) * sizeof(wchar_t));
         RegCloseKey(hKey);
     }
+    SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
 }
 
 static void perform_install(HWND hwnd) {
@@ -145,6 +156,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     wc.style = CS_HREDRAW | CS_VREDRAW;
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
+    wc.hIcon = LoadIconW(hInstance, MAKEINTRESOURCEW(1));
+    wc.hIconSm = LoadIconW(hInstance, MAKEINTRESOURCEW(1));
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
     wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wc.lpszClassName = L"UPlusPlusInstallerClass";

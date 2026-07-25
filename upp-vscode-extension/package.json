@@ -23,7 +23,11 @@
         "extensions": [
           ".upp"
         ],
-        "configuration": "./language-configuration.json"
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./fileicons/upp-file-icon.svg",
+          "dark": "./fileicons/upp-file-icon.svg"
+        }
       }
     ],
     "grammars": [
