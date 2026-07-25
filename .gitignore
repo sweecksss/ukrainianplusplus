@@ -1,0 +1,11 @@
+# Virtual environments & cache
+.venv/
+__pycache__/
+*.pyc
+.idea/
+.vscode/
+
+# C build objects (keep upp.exe)
+*.obj
+*.pdb
+*.ilk

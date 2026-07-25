@@ -1,0 +1,76 @@
+{
+  "name": "upp-vscode-extension",
+  "displayName": "U++ (Ukrainian Plus Plus) Language Support",
+  "description": "Syntax highlighting for the U++ (Ukrainian Plus Plus) experimental language.",
+  "version": "0.0.1",
+  "publisher": "your-name-or-id",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "main": "./extension.js",
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "upp",
+        "aliases": [
+          "U++",
+          "Ukrainian Plus Plus",
+          "upp"
+        ],
+        "extensions": [
+          ".upp"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "upp",
+        "scopeName": "source.upp",
+        "path": "./syntaxes/upp.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "upp",
+        "path": "./snippets/upp.code-snippets"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "upp-icons",
+        "label": "U++ Icons",
+        "path": "./fileicons/upp-icon-theme.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "upp.runFile",
+        "title": "Run U++",
+        "category": "U++"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "upp.runFile",
+          "when": "resourceLangId == upp"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "upp.runFile",
+          "when": "resourceLangId == upp",
+          "group": "navigation@1"
+        }
+      ]
+    }
+  },
+  "activationEvents": [
+    "onLanguage:upp",
+    "onCommand:upp.runFile"
+  ]
+}

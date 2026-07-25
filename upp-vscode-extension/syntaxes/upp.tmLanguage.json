@@ -1,0 +1,50 @@
+{
+  "scopeName": "source.upp",
+  "name": "U++",
+  "patterns": [
+    {
+      "name": "comment.line.number-sign.upp",
+      "match": "#.*$"
+    },
+    {
+      "name": "string.quoted.double.upp",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.upp",
+          "match": "\\\\."
+        },
+        {
+          "name": "variable.other.interpolation.upp",
+          "match": "\\{[^}]+\\}"
+        }
+      ]
+    },
+    {
+      "name": "constant.numeric.upp",
+      "match": "\\b\\d+(?:\\.\\d+)?\\b"
+    },
+    {
+      "name": "keyword.control.upp",
+      "match": "(?<![\\p{L}\\p{N}_])(нехай|буде|показати|якщо|інакше|поки|то|і|або|не)(?![\\p{L}\\p{N}_])"
+    },
+    {
+      "name": "keyword.operator.upp",
+      "match": "(?<![\\p{L}\\p{N}_])(додати|відняти|помножити|поділити|більше|менше|дорівнює)(?![\\p{L}\\p{N}_])"
+    },
+    {
+      "name": "constant.language.boolean.upp",
+      "match": "(?<![\\p{L}\\p{N}_])(правда|брехня)(?![\\p{L}\\p{N}_])"
+    },
+    {
+      "name": "variable.other.upp",
+      "match": "\\b[\\p{L}_][\\p{L}\\p{N}_]*\\b"
+    }
+  ],
+  "repository": {},
+  "fileTypes": [
+    "upp"
+  ],
+  "uuid": "e4b0d0c4-5f29-4c9d-9b1a-upp-000000000001"
+}

@@ -1,0 +1,20 @@
+[project]
+name = "uplusplus"
+version = "0.1.0"
+description = "Experimental Ukrainian-syntax toy language interpreter"
+authors = [
+    { name = "u++ author", email = "example@example.com" },
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+uplusplus = "uplusplus.main:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["uplusplus"]
+

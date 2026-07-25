@@ -1,0 +1,2 @@
+[console_scripts]
+uplusplus = uplusplus.main:main

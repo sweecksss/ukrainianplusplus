@@ -1,0 +1,10 @@
+{
+  "iconDefinitions": {
+    "upp-file": {
+      "iconPath": "./upp-file-icon.svg"
+    }
+  },
+  "fileExtensions": {
+    "upp": "upp-file"
+  }
+}
