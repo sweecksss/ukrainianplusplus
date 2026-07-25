@@ -3,7 +3,7 @@
   "displayName": "U++ (Ukrainian Plus Plus) Language Support",
   "description": "Syntax highlighting for the U++ (Ukrainian Plus Plus) experimental language.",
   "version": "0.0.1",
-  "publisher": "your-name-or-id",
+  "publisher": "sweecksss",
   "engines": {
     "vscode": "^1.80.0"
   },
