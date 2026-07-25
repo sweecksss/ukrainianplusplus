@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U++ (Ukrainian++) — Мова програмування з українським синтаксисом</title>
+    <meta name="description" content="Офіційна документація та завантаження сучасної, нативної мови програмування U++ з українським синтаксисом на базі C.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background glow shapes -->
+    <div class="glow-bg glow-1"></div>
+    <div class="glow-bg glow-2"></div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="brand">
+                <span class="brand-badge">U++</span>
+                <span class="brand-text">Ukrainian++</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#about">Про мову</a>
+                <a href="#features">Переваги</a>
+                <a href="#docs">Документація</a>
+                <a href="#hosting">Безкоштовний хостинг</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="downloads/upp.exe" download="upp.exe" class="btn btn-primary glow-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Завантажити upp.exe
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="tag-pill">
+                    <span class="status-dot"></span> Нативний C-двигун (Без Python)
+                </div>
+                <h1 class="hero-title">Мова програмування з <span class="gradient-text">українським синтаксисом</span></h1>
+                <p class="hero-subtitle">
+                    U++ (Ukrainian++) — це блискавично швидка, нативна мова програмування, створена на мові <strong>C</strong> (як і CPython). Проста, читабельна та елегантна.
+                </p>
+                <div class="hero-btns">
+                    <a href="downloads/upp.exe" download="upp.exe" class="btn btn-lg btn-primary shadow-glow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Завантажити upp.exe (Windows)
+                    </a>
+                    <a href="#docs" class="btn btn-lg btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        Документація
+                    </a>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-num">100%</div>
+                        <div class="stat-label">Нативний C-код</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">&lt; 1 МБ</div>
+                        <div class="stat-label">Розмір утиліти</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">0 ms</div>
+                        <div class="stat-label">Затримка запуску</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Code Window Preview -->
+            <div class="code-window-card">
+                <div class="code-header">
+                    <div class="dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="code-filename">main.upp</span>
+                    <button class="copy-btn" onclick="copyHeroCode()">Копіювати</button>
+                </div>
+                <div class="code-body">
+                    <pre><code id="hero-code"><span class="comment"># Програма на мові U++</span>
+<span class="keyword">нехай</span> а <span class="keyword">буде</span> <span class="number">10</span>
+<span class="keyword">нехай</span> б <span class="keyword">буде</span> <span class="number">10</span>
+
+<span class="keyword">якщо</span> а <span class="operator">дорівнює</span> б <span class="keyword">то</span>
+    <span class="keyword">показати</span> <span class="string">"Привіт, Україно! 🎉"</span></code></pre>
+                </div>
+                <div class="code-output-bar">
+                    <span class="output-label">Результат запуску:</span>
+                    <span class="output-text">Привіт, Україно! 🎉</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Чому U++ це чудово?</h2>
+                <p class="section-subtitle">Сучасні технології розробки у поєднанні з рідною мовою</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon gradient-icon-1">⚡</div>
+                    <h3>Нативна швидкість C</h3>
+                    <p>Інтерпретатор написаний повністю на C без залежностей від Python или JVM. Запускається миттєво.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon gradient-icon-2">🇺🇦</div>
+                    <h3>Український синтаксис</h3>
+                    <p>Усі оператори, умови та слова записані зрозумілою українською мовою: <code>нехай</code>, <code>показати</code>, <code>якщо</code>, <code>поки</code>.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon gradient-icon-3">🧩</div>
+                    <h3>VS Code Розширення</h3>
+                    <p>Готове розширення для Visual Studio Code із підсвіткою синтаксису, автодоповненням та кнопкою запуску у 1 клік.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="docs" class="section docs-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Документація та Довідник</h2>
+                <p class="section-subtitle">Вивчайте мову U++ за кілька хвилин</p>
+            </div>
+
+            <div class="docs-layout">
+                <!-- Sidebar Navigation -->
+                <div class="docs-sidebar">
+                    <button class="doc-tab active" onclick="showTab('tab-start')">🚀 Швидкий старт</button>
+                    <button class="doc-tab" onclick="showTab('tab-vars')">📦 Змінні та типи</button>
+                    <button class="doc-tab" onclick="showTab('tab-ops')">🧮 Оператори</button>
+                    <button class="doc-tab" onclick="showTab('tab-cond')">🔀 Умови (якщо / інакше)</button>
+                    <button class="doc-tab" onclick="showTab('tab-loops')">🔄 Цикли (поки)</button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="docs-content">
+                    
+                    <!-- Tab: Quick Start -->
+                    <div id="tab-start" class="tab-panel active">
+                        <h3>Швидкий старт</h3>
+                        <p>Щоб виконати файл з кодом U++, завантажте <code>upp.exe</code> і виконайте у терміналі:</p>
+                        <div class="code-box">
+                            <pre><code>upp.exe program.upp</code></pre>
+                        </div>
+                        <h4>Приклад першої програми:</h4>
+                        <div class="code-box">
+                            <pre><code>нехай імʼя буде "Олексій"
+показати "Привіт, {імʼя}!"</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Variables -->
+                    <div id="tab-vars" class="tab-panel">
+                        <h3>Змінні та типи даних</h3>
+                        <p>Оголошення змінної виконується конструкцією <code>нехай &lt;імʼя&gt; буде &lt;вираз&gt;</code>.</p>
+                        <h4>Типи даних:</h4>
+                        <ul>
+                            <li><strong>Числа</strong>: <code>10</code>, <code>-5</code>, <code>100</code></li>
+                            <li><strong>Рядки</strong>: <code>"Текст"</code> (підтримують інтерполяцію <code>"{змінна}"</code>)</li>
+                            <li><strong>Булеві значення</strong>: <code>правда</code>, <code>брехня</code></li>
+                        </ul>
+                        <div class="code-box">
+                            <pre><code>нехай вік буде 20
+нехай активний буде правда
+нехай повідомлення буде "Вік: {вік}"
+показати повідомлення</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Operators -->
+                    <div id="tab-ops" class="tab-panel">
+                        <h3>Математичні та логічні оператори</h3>
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Операція</th>
+                                    <th>Ключове слово</th>
+                                    <th>Приклад</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Додавання</td>
+                                    <td><code>додати</code></td>
+                                    <td><code>10 додати 5</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Віднімання</td>
+                                    <td><code>відняти</code></td>
+                                    <td><code>20 відняти 8</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Множення</td>
+                                    <td><code>помножити</code></td>
+                                    <td><code>3 помножити 4</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Ділення</td>
+                                    <td><code>поділити</code></td>
+                                    <td><code>10 поділити 2</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Порівняння</td>
+                                    <td><code>більше</code>, <code>менше</code>, <code>дорівнює</code></td>
+                                    <td><code>а більше 5</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Логіка</td>
+                                    <td><code>і</code>, <code>або</code>, <code>не</code></td>
+                                    <td><code>а більше 0 і б менше 10</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Tab: Conditionals -->
+                    <div id="tab-cond" class="tab-panel">
+                        <h3>Умовні оператори (якщо / інакше)</h3>
+                        <p>Блоки коду визначаються відступами (4 пробіли):</p>
+                        <div class="code-box">
+                            <pre><code>нехай бали буде 95
+
+якщо бали більше 90 то
+    показати "Відмінно!"
+інакше то
+    показати "Спробуйте ще раз"</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Loops -->
+                    <div id="tab-loops" class="tab-panel">
+                        <h3>Цикл поки (While Loop)</h3>
+                        <p>Цикл виконує блок коду, поки умова істинна:</p>
+                        <div class="code-box">
+                            <pre><code>нехай лічильник буде 0
+
+поки лічильник менше 5 то
+    нехай лічильник буде лічильник додати 1
+    показати "Крок номер: {лічильник}"</code></pre>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Hosting Guide Section -->
+    <section id="hosting" class="section hosting-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Як безкоштовно захостити цей сайт?</h2>
+                <p class="section-subtitle">3 найпростіших способи опублікувати сайт в мережі абсолютно безкоштовно</p>
+            </div>
+
+            <div class="hosting-grid">
+                
+                <!-- Option 1: GitHub Pages -->
+                <div class="hosting-card featured">
+                    <div class="hosting-badge">Найпопулярніший</div>
+                    <h3>1. GitHub Pages (Рекомендовано)</h3>
+                    <p>Безкоштовний хостинг прямо з вашого репозиторію GitHub із власною адресою <code>yourname.github.io/upp</code>.</p>
+                    <ol class="steps-list">
+                        <li>Створіть безкоштовний акаунт на <a href="https://github.com" target="_blank">GitHub.com</a>.</li>
+                        <li>Створіть репозиторій з назвою <code>upp-site</code>.</li>
+                        <li>Завантажте всі файли з папки <code>site/</code> у цей репозиторій.</li>
+                        <li>Перейдіть у <strong>Settings ➔ Pages</strong>, оберіть гілку <code>main</code> і натисніть <strong>Save</strong>.</li>
+                        <li>Через 1-2 хвилини ваш сайт буде доступний для всього світу!</li>
+                    </ol>
+                </div>
+
+                <!-- Option 2: Vercel -->
+                <div class="hosting-card">
+                    <h3>2. Vercel</h3>
+                    <p>Супер-швидкий хостинг з миттєвим деплоєм за 1 клік.</p>
+                    <ol class="steps-list">
+                        <li>Зареєструйтесь на <a href="https://vercel.com" target="_blank">Vercel.com</a>.</li>
+                        <li>Натисніть <strong>Add New ➔ Project</strong>.</li>
+                        <li>Імпортуйте свій репозиторій з GitHub або перетягніть папку <code>site/</code>.</li>
+                        <li>Отримайте безкоштовний домен <code>upp.vercel.app</code> та безкоштовний SSL-сертифікат.</li>
+                    </ol>
+                </div>
+
+                <!-- Option 3: Netlify -->
+                <div class="hosting-card">
+                    <h3>3. Netlify</h3>
+                    <p>Простий варіант без використання командного рядка (Drag & Drop).</p>
+                    <ol class="steps-list">
+                        <li>Зареєструйтесь на <a href="https://netlify.com" target="_blank">Netlify.com</a>.</li>
+                        <li>Перейдіть у раздел <strong>Sites</strong>.</li>
+                        <li>Просто перетягніть папку <code>site/</code> у вікно браузера!</li>
+                        <li>Сайт запрацює миттєво за адресою <code>upp.netlify.app</code>.</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>© 2026 U++ (Ukrainian++). Нативна мова програмування з українським синтаксисом.</p>
+            <div class="footer-links">
+                <a href="#about">Про мову</a>
+                <a href="#docs">Документація</a>
+                <a href="downloads/upp.exe" download="upp.exe">Завантажити (.exe)</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
