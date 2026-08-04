@@ -50,3 +50,34 @@ function copyHeroCode() {
         }, 2000);
     });
 }
+
+function openDownloadModal() {
+    const modal = document.getElementById('download-modal');
+    if (modal) {
+        modal.classList.add('active');
+    }
+}
+
+function closeDownloadModal() {
+    const modal = document.getElementById('download-modal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
+
+function copyLinuxCmd() {
+    const cmdText = "curl -fsSL https://raw.githubusercontent.com/sweecksss/ukrainianplusplus/main/install.sh | bash";
+    const btn = document.getElementById('copy-linux-btn');
+
+    navigator.clipboard.writeText(cmdText).then(() => {
+        if (!btn) return;
+        btn.textContent = 'Скопійовано! ✓';
+        setTimeout(() => {
+            btn.textContent = 'Скопіювати';
+        }, 2000);
+    });
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDownloadModal();
+});

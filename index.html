@@ -30,10 +30,10 @@
                 <a href="#docs">Документація</a>
             </nav>
             <div class="nav-actions">
-                <a href="downloads/upp_setup.exe" download="upp_setup.exe" class="btn btn-primary glow-btn">
+                <button onclick="openDownloadModal()" class="btn btn-primary glow-btn">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Завантажити upp.exe
-                </a>
+                    Завантажити U++
+                </button>
             </div>
         </div>
     </header>
@@ -50,10 +50,10 @@
                     U++ (Ukrainian++) — це блискавично швидка, нативна мова програмування, створена на мові <strong>C</strong> (як і CPython). Проста, читабельна та елегантна.
                 </p>
                 <div class="hero-btns">
-                    <a href="downloads/upp_setup.exe" download="upp_setup.exe" class="btn btn-lg btn-primary shadow-glow">
+                    <button onclick="openDownloadModal()" class="btn btn-lg btn-primary shadow-glow">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        Завантажити Інсталятор U++
-                    </a>
+                        Завантажити U++
+                    </button>
                     <a href="downloads/upp-vscode-extension.vsix" download="upp-vscode-extension.vsix" class="btn btn-lg btn-secondary">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v1"/><path d="M18 8l4 4-4 4"/><path d="M8 12h14"/></svg>
                         VS Code Розширення (.vsix)
@@ -772,10 +772,61 @@ upp --version              # версія інтерпретатора U++</code
             <div class="footer-links">
                 <a href="#about">Про мову</a>
                 <a href="#docs">Документація</a>
-                <a href="downloads/upp_setup.exe" download="upp_setup.exe">Завантажити (.exe)</a>
+                <a href="javascript:void(0)" onclick="openDownloadModal()">Завантажити U++</a>
             </div>
         </div>
     </footer>
+
+    <!-- Download OS Modal -->
+    <div id="download-modal" class="modal-overlay" onclick="if(event.target===this) closeDownloadModal()">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeDownloadModal()">&times;</button>
+            <h2 class="modal-title">Завантажити U++</h2>
+            <p class="modal-subtitle">Оберіть вашу операційну систему або розширення</p>
+            
+            <div class="download-options">
+                <!-- Option 1: Windows -->
+                <a href="downloads/upp_setup.exe" download="upp_setup.exe" class="download-option-card">
+                    <div class="option-icon">🪟</div>
+                    <div class="option-info">
+                        <div class="option-title">
+                            Windows (10 / 11)
+                            <span style="font-size: 0.75rem; background: rgba(0,212,255,0.2); color: #00d4ff; padding: 2px 8px; border-radius: 6px;">.exe Інсталятор</span>
+                        </div>
+                        <div class="option-desc">Автоматично додає <code>upp</code> у системний PATH. Готово до використання.</div>
+                    </div>
+                </a>
+
+                <!-- Option 2: Linux / macOS -->
+                <div class="download-option-card" style="cursor: default;">
+                    <div class="option-icon">🐧</div>
+                    <div class="option-info">
+                        <div class="option-title">
+                            Linux / macOS
+                            <span style="font-size: 0.75rem; background: rgba(52,211,153,0.2); color: #34d399; padding: 2px 8px; border-radius: 6px;">C11 Нативний</span>
+                        </div>
+                        <div class="option-desc">Запустіть команду в терміналі для авто-встановлення у <code>/usr/local/bin</code>:</div>
+                        <div class="cmd-box">
+                            <span>curl -fsSL https://raw.githubusercontent.com/sweecksss/ukrainianplusplus/main/install.sh | bash</span>
+                            <button id="copy-linux-btn" class="copy-cmd-btn" onclick="copyLinuxCmd()">Скопіювати</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Option 3: VS Code Extension -->
+                <a href="downloads/upp-vscode-extension.vsix" download="upp-vscode-extension.vsix" class="download-option-card">
+                    <div class="option-icon">🧩</div>
+                    <div class="option-info">
+                        <div class="option-title">
+                            VS Code Розширення
+                            <span style="font-size: 0.75rem; background: rgba(255,215,0,0.2); color: #ffd700; padding: 2px 8px; border-radius: 6px;">.vsix</span>
+                        </div>
+                        <div class="option-desc">Підсвітка синтаксису, автодоповнення сніпетів та кнопка запуску у 1 клік.</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
