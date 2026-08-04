@@ -17,7 +17,7 @@
         },
         {
           "name": "variable.other.interpolation.upp",
-          "match": "\\{[^}]+\\}"
+          "match": "\\{[^}]*\\}"
         }
       ]
     },
@@ -26,8 +26,24 @@
       "match": "\\b\\d+(?:\\.\\d+)?\\b"
     },
     {
+      "name": "storage.type.function.upp",
+      "match": "(?<![\\p{L}\\p{N}_])(функція)(?![\\p{L}\\p{N}_])"
+    },
+    {
       "name": "keyword.control.upp",
-      "match": "(?<![\\p{L}\\p{N}_])(нехай|буде|показати|якщо|інакше|поки|то|і|або|не)(?![\\p{L}\\p{N}_])"
+      "match": "(?<![\\p{L}\\p{N}_])(якщо|інакше|поки|то|повернути)(?![\\p{L}\\p{N}_])"
+    },
+    {
+      "name": "keyword.declaration.upp",
+      "match": "(?<![\\p{L}\\p{N}_])(нехай|буде|стає|показати)(?![\\p{L}\\p{N}_])"
+    },
+    {
+      "name": "keyword.operator.comparison.upp",
+      "match": "(?<![\\p{L}\\p{N}_])не\\s+(дорівнює|менше|більше)(?![\\p{L}\\p{N}_])"
+    },
+    {
+      "name": "keyword.operator.logical.upp",
+      "match": "(?<![\\p{L}\\p{N}_])(і|та|або|не)(?![\\p{L}\\p{N}_])"
     },
     {
       "name": "keyword.operator.upp",
@@ -36,6 +52,22 @@
     {
       "name": "constant.language.boolean.upp",
       "match": "(?<![\\p{L}\\p{N}_])(правда|брехня)(?![\\p{L}\\p{N}_])"
+    },
+    {
+      "name": "support.function.builtin.upp",
+      "match": "(?<![\\p{L}\\p{N}_])(довжина|ввести|число|текст|додати_до)(?=\\s*\\()"
+    },
+    {
+      "name": "entity.name.function.upp",
+      "match": "(?<![\\p{L}\\p{N}_])[\\p{L}_][\\p{L}\\p{N}_]*(?=\\s*\\()"
+    },
+    {
+      "name": "keyword.operator.arithmetic.upp",
+      "match": "-"
+    },
+    {
+      "name": "punctuation.separator.upp",
+      "match": "[,\\[\\]()]"
     },
     {
       "name": "variable.other.upp",

@@ -2,30 +2,48 @@ const vscode = require('vscode');
 const path = require('path');
 
 const COMPLETIONS = [
-  // Keywords
-  { label: 'нехай', kind: vscode.CompletionItemKind.Keyword },
+  // Ключові слова
+  { label: 'нехай', kind: vscode.CompletionItemKind.Keyword, detail: 'оголосити змінну' },
   { label: 'буде', kind: vscode.CompletionItemKind.Keyword },
-  { label: 'показати', kind: vscode.CompletionItemKind.Keyword },
+  { label: 'стає', kind: vscode.CompletionItemKind.Keyword, detail: 'змінити наявну змінну' },
+  { label: 'показати', kind: vscode.CompletionItemKind.Keyword, detail: 'вивести значення' },
   { label: 'якщо', kind: vscode.CompletionItemKind.Keyword },
   { label: 'інакше', kind: vscode.CompletionItemKind.Keyword },
   { label: 'поки', kind: vscode.CompletionItemKind.Keyword },
   { label: 'то', kind: vscode.CompletionItemKind.Keyword },
+  { label: 'функція', kind: vscode.CompletionItemKind.Keyword, detail: 'оголосити функцію' },
+  { label: 'повернути', kind: vscode.CompletionItemKind.Keyword, detail: 'повернути значення' },
 
-  // Boolean literals
+  // Літерали
   { label: 'правда', kind: vscode.CompletionItemKind.Constant },
   { label: 'брехня', kind: vscode.CompletionItemKind.Constant },
 
-  // Operators
-  { label: 'додати', kind: vscode.CompletionItemKind.Operator },
-  { label: 'відняти', kind: vscode.CompletionItemKind.Operator },
-  { label: 'помножити', kind: vscode.CompletionItemKind.Operator },
-  { label: 'поділити', kind: vscode.CompletionItemKind.Operator },
-  { label: 'більше', kind: vscode.CompletionItemKind.Operator },
-  { label: 'менше', kind: vscode.CompletionItemKind.Operator },
-  { label: 'дорівнює', kind: vscode.CompletionItemKind.Operator },
-  { label: 'і', kind: vscode.CompletionItemKind.Operator },
-  { label: 'або', kind: vscode.CompletionItemKind.Operator },
-  { label: 'не', kind: vscode.CompletionItemKind.Operator }
+  // Арифметика
+  { label: 'додати', kind: vscode.CompletionItemKind.Operator, detail: 'a + b' },
+  { label: 'відняти', kind: vscode.CompletionItemKind.Operator, detail: 'a - b' },
+  { label: 'помножити', kind: vscode.CompletionItemKind.Operator, detail: 'a * b' },
+  { label: 'поділити', kind: vscode.CompletionItemKind.Operator, detail: 'a / b' },
+
+  // Порівняння
+  { label: 'більше', kind: vscode.CompletionItemKind.Operator, detail: 'a > b' },
+  { label: 'менше', kind: vscode.CompletionItemKind.Operator, detail: 'a < b' },
+  { label: 'дорівнює', kind: vscode.CompletionItemKind.Operator, detail: 'a == b' },
+  { label: 'не дорівнює', kind: vscode.CompletionItemKind.Operator, detail: 'a != b' },
+  { label: 'не менше', kind: vscode.CompletionItemKind.Operator, detail: 'a >= b' },
+  { label: 'не більше', kind: vscode.CompletionItemKind.Operator, detail: 'a <= b' },
+
+  // Логіка
+  { label: 'і', kind: vscode.CompletionItemKind.Operator, detail: 'логічне І' },
+  { label: 'та', kind: vscode.CompletionItemKind.Operator, detail: 'логічне І (синонім)' },
+  { label: 'або', kind: vscode.CompletionItemKind.Operator, detail: 'логічне АБО' },
+  { label: 'не', kind: vscode.CompletionItemKind.Operator, detail: 'заперечення' },
+
+  // Вбудовані функції
+  { label: 'довжина', kind: vscode.CompletionItemKind.Function, detail: 'довжина(рядок або список)' },
+  { label: 'ввести', kind: vscode.CompletionItemKind.Function, detail: 'ввести() або ввести(підказка)' },
+  { label: 'число', kind: vscode.CompletionItemKind.Function, detail: 'число(значення)' },
+  { label: 'текст', kind: vscode.CompletionItemKind.Function, detail: 'текст(значення)' },
+  { label: 'додати_до', kind: vscode.CompletionItemKind.Function, detail: 'додати_до(список, значення)' }
 ];
 
 /**
@@ -70,8 +88,26 @@ function activate(context) {
 
     const relativePath = workspaceFolder ? path.relative(cwd, filePath) : filePath;
     const fs = require('fs');
-    const exePath = workspaceFolder ? path.join(cwd, 'upp.exe') : 'upp.exe';
-    const command = fs.existsSync(exePath) ? `.\\upp.exe "${relativePath}"` : `python main.py "${relativePath}"`;
+    const isWindows = process.platform === 'win32';
+    const exeName = isWindows ? 'upp.exe' : 'upp';
+
+    // Свіжозібраний бінарник у upp-c/ має перевагу над копією в корені,
+    // інакше після перезбирання запускалася б стара версія.
+    const localCandidates = workspaceFolder
+      ? [path.join(cwd, 'upp-c', exeName), path.join(cwd, exeName)]
+      : [];
+    const found = localCandidates.find(candidate => fs.existsSync(candidate));
+
+    let command;
+    if (found) {
+      const relativeExe = path.relative(cwd, found);
+      command = isWindows
+        ? `.\\${relativeExe} "${relativePath}"`
+        : `./${relativeExe} "${relativePath}"`;
+    } else {
+      // Інсталятор додає upp у PATH; якщо його там немає, лишається обгортка.
+      command = `${exeName} "${relativePath}"`;
+    }
 
     terminal.sendText(command);
   });

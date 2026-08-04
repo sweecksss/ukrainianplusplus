@@ -1,11 +1,22 @@
-# Virtual environments & cache
+# Середовища та кеші
 .venv/
 __pycache__/
 *.pyc
 .idea/
 .vscode/
 
-# C build objects (keep upp.exe)
+# Проміжні файли складання C
 *.obj
 *.pdb
 *.ilk
+*.o
+*.res
+
+# Складений інтерпретатор: у upp-c/ це результат складання, а не артефакт
+# репозиторію. Копії, які роздаються з сайту, лежать у downloads/.
+upp-c/upp.exe
+upp-c/upp
+upp-c/upp_test.exe
+
+# Тимчасові файли інсталятора
+installer/upp_setup.obj

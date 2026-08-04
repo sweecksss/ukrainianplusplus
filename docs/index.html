@@ -39,7 +39,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="about" class="hero">
         <div class="container hero-grid">
             <div class="hero-content">
                 <div class="tag-pill">
@@ -88,15 +88,19 @@
                 </div>
                 <div class="code-body">
                     <pre><code id="hero-code"><span class="comment"># Програма на мові U++</span>
-<span class="keyword">нехай</span> а <span class="keyword">буде</span> <span class="number">10</span>
-<span class="keyword">нехай</span> б <span class="keyword">буде</span> <span class="number">10</span>
+<span class="keyword">функція</span> привітати(імʼя)
+    <span class="keyword">показати</span> <span class="string">"Привіт, {імʼя}! 🎉"</span>
 
-<span class="keyword">якщо</span> а <span class="operator">дорівнює</span> б <span class="keyword">то</span>
-    <span class="keyword">показати</span> <span class="string">"Привіт, Україно! 🎉"</span></code></pre>
+<span class="keyword">нехай</span> друзі <span class="keyword">буде</span> [<span class="string">"Оксано"</span>, <span class="string">"Тарасе"</span>]
+<span class="keyword">нехай</span> і <span class="keyword">буде</span> <span class="number">0</span>
+
+<span class="keyword">поки</span> і <span class="operator">менше</span> довжина(друзі) <span class="keyword">то</span>
+    привітати(друзі[і])
+    і <span class="keyword">стає</span> і <span class="operator">додати</span> <span class="number">1</span></code></pre>
                 </div>
                 <div class="code-output-bar">
                     <span class="output-label">Результат запуску:</span>
-                    <span class="output-text">Привіт, Україно! 🎉</span>
+                    <span class="output-text">Привіт, Оксано! 🎉 Привіт, Тарасе! 🎉</span>
                 </div>
             </div>
         </div>
@@ -113,17 +117,32 @@
                 <div class="feature-card">
                     <div class="feature-icon gradient-icon-1">⚡</div>
                     <h3>Нативна швидкість C</h3>
-                    <p>Інтерпретатор написаний повністю на C без залежностей від Python или JVM. Запускається миттєво.</p>
+                    <p>Інтерпретатор написаний повністю на C без залежностей від Python чи JVM. Запускається миттєво.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon gradient-icon-2">🇺🇦</div>
                     <h3>Український синтаксис</h3>
-                    <p>Усі оператори, умови та слова записані зрозумілою українською мовою: <code>нехай</code>, <code>показати</code>, <code>якщо</code>, <code>поки</code>.</p>
+                    <p>Усі оператори, умови та слова записані зрозумілою українською мовою: <code>нехай</code>, <code>показати</code>, <code>якщо</code>, <code>поки</code>, <code>функція</code>.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon gradient-icon-3">🧩</div>
                     <h3>VS Code Розширення</h3>
                     <p>Готове розширення для Visual Studio Code із підсвіткою синтаксису, автодоповненням та кнопкою запуску у 1 клік.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon gradient-icon-1">🧰</div>
+                    <h3>Усе для справжніх програм</h3>
+                    <p>Функції з рекурсією, списки, дробові числа, введення з клавіатури та рядки з підстановкою значень.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon gradient-icon-2">💬</div>
+                    <h3>Помилки українською</h3>
+                    <p>Кожне повідомлення вказує рядок і колонку та пояснює, що саме не так — жодних загадкових кодів.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon gradient-icon-3">✅</div>
+                    <h3>Перевірено тестами</h3>
+                    <p>Мова покрита набором тестів, які перевіряють і вивід програм, і повідомлення про помилки.</p>
                 </div>
             </div>
         </div>
@@ -145,6 +164,10 @@
                     <button class="doc-tab" onclick="showTab('tab-ops')">🧮 Оператори</button>
                     <button class="doc-tab" onclick="showTab('tab-cond')">🔀 Умови (якщо / інакше)</button>
                     <button class="doc-tab" onclick="showTab('tab-loops')">🔄 Цикли (поки)</button>
+                    <button class="doc-tab" onclick="showTab('tab-strings')">✍️ Рядки</button>
+                    <button class="doc-tab" onclick="showTab('tab-lists')">📋 Списки</button>
+                    <button class="doc-tab" onclick="showTab('tab-funcs')">⚙️ Функції</button>
+                    <button class="doc-tab" onclick="showTab('tab-errors')">⚠️ Помилки</button>
                 </div>
 
                 <!-- Tab Content -->
@@ -153,15 +176,27 @@
                     <!-- Tab: Quick Start -->
                     <div id="tab-start" class="tab-panel active">
                         <h3>Швидкий старт</h3>
-                        <p>Щоб виконати файл з кодом U++, завантажте <code>upp.exe</code> і виконайте у терміналі:</p>
-                        <div class="code-box">
-                            <pre><code>upp.exe program.upp</code></pre>
-                        </div>
-                        <h4>Приклад першої програми:</h4>
+                        <h4>1. Встановіть U++</h4>
+                        <p>Завантажте інсталятор кнопкою вгорі — він додасть <code>upp</code> у <code>PATH</code>,
+                        тож мову можна буде викликати з будь-якої теки.</p>
+                        <h4>2. Створіть файл <code>програма.upp</code></h4>
                         <div class="code-box">
                             <pre><code>нехай імʼя буде "Олексій"
 показати "Привіт, {імʼя}!"</code></pre>
                         </div>
+                        <h4>3. Запустіть</h4>
+                        <div class="code-box">
+                            <pre><code>upp програма.upp</code></pre>
+                        </div>
+                        <p>Результат:</p>
+                        <div class="code-box">
+                            <pre><code>Привіт, Олексій!</code></pre>
+                        </div>
+                        <h4>Далі</h4>
+                        <p>Розширення для VS Code додає підсвітку, автодоповнення та кнопку
+                        <strong>Run U++</strong> — програму можна запускати просто з редактора.</p>
+                        <p>Якщо в програмі є помилка, інтерпретатор скаже українською, у якому рядку
+                        вона сталася, і поверне код виходу <code>1</code>.</p>
                     </div>
 
                     <!-- Tab: Variables -->
@@ -171,14 +206,24 @@
                         <h4>Типи даних:</h4>
                         <ul>
                             <li><strong>Числа</strong>: <code>10</code>, <code>-5</code>, <code>100</code></li>
-                            <li><strong>Рядки</strong>: <code>"Текст"</code> (підтримують інтерполяцію <code>"{змінна}"</code>)</li>
+                            <li><strong>Дробові числа</strong>: <code>3.14</code>, <code>2.0</code></li>
+                            <li><strong>Рядки</strong>: <code>"Текст"</code> (підтримують підстановку <code>"{змінна}"</code>)</li>
                             <li><strong>Булеві значення</strong>: <code>правда</code>, <code>брехня</code></li>
+                            <li><strong>Списки</strong>: <code>[1, 2, 3]</code></li>
                         </ul>
                         <div class="code-box">
                             <pre><code>нехай вік буде 20
+нехай зріст буде 1.82
 нехай активний буде правда
 нехай повідомлення буде "Вік: {вік}"
 показати повідомлення</code></pre>
+                        </div>
+                        <h4>Зміна значення</h4>
+                        <p><code>нехай</code> створює змінну, а <code>стає</code> змінює вже наявну:</p>
+                        <div class="code-box">
+                            <pre><code>нехай лічильник буде 0
+лічильник стає лічильник додати 1
+показати лічильник</code></pre>
                         </div>
                     </div>
 
@@ -220,12 +265,29 @@
                                     <td><code>а більше 5</code></td>
                                 </tr>
                                 <tr>
+                                    <td>Заперечні порівняння</td>
+                                    <td><code>не дорівнює</code>, <code>не менше</code>, <code>не більше</code></td>
+                                    <td><code>вік не менше 18</code></td>
+                                </tr>
+                                <tr>
                                     <td>Логіка</td>
-                                    <td><code>і</code>, <code>або</code>, <code>не</code></td>
+                                    <td><code>і</code> (або <code>та</code>), <code>або</code>, <code>не</code></td>
                                     <td><code>а більше 0 і б менше 10</code></td>
                                 </tr>
                             </tbody>
                         </table>
+                        <h4>Дужки та пріоритет</h4>
+                        <p>Дужки змінюють порядок обчислення:</p>
+                        <div class="code-box">
+                            <pre><code>показати 2 додати 3 помножити 4      # 14
+показати (2 додати 3) помножити 4    # 20</code></pre>
+                        </div>
+                        <h4>Ділення</h4>
+                        <p>Два цілі числа діляться націло. Щоб отримати дробовий результат, досить зробити дробовим один з операндів:</p>
+                        <div class="code-box">
+                            <pre><code>показати 7 поділити 2      # 3
+показати 7.0 поділити 2    # 3.5</code></pre>
+                        </div>
                     </div>
 
                     <!-- Tab: Conditionals -->
@@ -250,9 +312,180 @@
                             <pre><code>нехай лічильник буде 0
 
 поки лічильник менше 5 то
-    нехай лічильник буде лічильник додати 1
+    лічильник стає лічильник додати 1
     показати "Крок номер: {лічильник}"</code></pre>
                         </div>
+                    </div>
+
+                    <!-- Tab: Strings -->
+                    <div id="tab-strings" class="tab-panel">
+                        <h3>Рядки</h3>
+                        <p>Рядки беруться в подвійні лапки й зберігаються в UTF-8.</p>
+                        <h4>Підстановка значень</h4>
+                        <p>У фігурні дужки всередині рядка можна підставити значення змінної:</p>
+                        <div class="code-box">
+                            <pre><code>нехай імʼя буде "Оксана"
+нехай вік буде 20
+
+показати "Привіт, {імʼя}!"          # Привіт, Оксана!
+показати "Тобі {вік} років"         # Тобі 20 років</code></pre>
+                        </div>
+                        <p>У дужки пишеться <strong>лише назва змінної</strong>, а не цілий вираз.</p>
+                        <h4>Екрановані послідовності</h4>
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Запис</th>
+                                    <th>Що означає</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>\n</code></td><td>перехід на новий рядок</td></tr>
+                                <tr><td><code>\t</code></td><td>табуляція</td></tr>
+                                <tr><td><code>\"</code></td><td>подвійна лапка</td></tr>
+                                <tr><td><code>\\</code></td><td>зворотна скісна риска</td></tr>
+                                <tr><td><code>\{</code> і <code>\}</code></td><td>фігурні дужки без підстановки</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="code-box">
+                            <pre><code>показати "Перший рядок\nДругий рядок"
+показати "Він сказав: \"привіт\""
+показати "Це просто дужки: \{ \}"</code></pre>
+                        </div>
+                        <h4>Довжина та символи</h4>
+                        <p>Довжина й індексація рахуються <strong>в символах, а не в байтах</strong>, тому українські літери працюють як звичайні:</p>
+                        <div class="code-box">
+                            <pre><code>нехай слово буде "привіт"
+
+показати довжина(слово)     # 6
+показати слово[0]           # п
+показати слово[5]           # т</code></pre>
+                        </div>
+                        <h4>Склеювання</h4>
+                        <div class="code-box">
+                            <pre><code>показати "Разом: " додати 42        # Разом: 42
+показати "а" додати "б" додати "в"  # абв</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Lists -->
+                    <div id="tab-lists" class="tab-panel">
+                        <h3>Списки</h3>
+                        <p>Список — це впорядкований набір значень. Індекси починаються з нуля.</p>
+                        <div class="code-box">
+                            <pre><code>нехай числа буде [1, 2, 3]
+
+показати числа[0]           # 1
+показати довжина(числа)     # 3
+
+числа[1] стає 99            # [1, 99, 3]
+додати_до(числа, 4)         # [1, 99, 3, 4]
+
+показати числа</code></pre>
+                        </div>
+                        <h4>Обхід списку</h4>
+                        <div class="code-box">
+                            <pre><code>нехай друзі буде ["Оксана", "Тарас", "Леся"]
+нехай і буде 0
+
+поки і менше довжина(друзі) то
+    показати друзі[і]
+    і стає і додати 1</code></pre>
+                        </div>
+                        <p>Рядки теж індексуються — і саме в символах, а не в байтах:
+                        <code>довжина("привіт")</code> дорівнює <code>6</code>.</p>
+                    </div>
+
+                    <!-- Tab: Functions -->
+                    <div id="tab-funcs" class="tab-panel">
+                        <h3>Функції</h3>
+                        <p>Функція оголошується словом <code>функція</code>, а значення повертається словом <code>повернути</code>:</p>
+                        <div class="code-box">
+                            <pre><code>функція площа(ширина, висота)
+    повернути ширина помножити висота
+
+показати площа(3, 4)     # 12</code></pre>
+                        </div>
+                        <h4>Рекурсія</h4>
+                        <div class="code-box">
+                            <pre><code>функція факторіал(н)
+    якщо н не більше 1 то
+        повернути 1
+    повернути н помножити факторіал(н відняти 1)
+
+показати факторіал(5)    # 120</code></pre>
+                        </div>
+                        <h4>Вбудовані функції</h4>
+                        <ul>
+                            <li><code>довжина(х)</code> — довжина рядка або списку</li>
+                            <li><code>ввести()</code> — читає рядок з клавіатури</li>
+                            <li><code>число(х)</code> — перетворює на число</li>
+                            <li><code>текст(х)</code> — перетворює на рядок</li>
+                            <li><code>додати_до(список, значення)</code> — додає елемент</li>
+                        </ul>
+                        <div class="code-box">
+                            <pre><code>нехай вік буде число(ввести("Скільки тобі років? "))
+показати "Через рік буде " додати (вік додати 1)</code></pre>
+                        </div>
+                        <h4>Область видимості</h4>
+                        <p>Тіло функції бачить свої параметри, власні змінні та глобальні змінні,
+                        але не бачить локальні змінні того, хто її викликав. Функції можна викликати
+                        й до їхнього оголошення, тому взаємна рекурсія працює.</p>
+                    </div>
+
+                    <!-- Tab: Errors -->
+                    <div id="tab-errors" class="tab-panel">
+                        <h3>Помилки</h3>
+                        <p>Усі повідомлення — українською, із номером рядка. Програма з помилками
+                        розбору не виконується взагалі: інтерпретатор показує всі знайдені проблеми
+                        одразу.</p>
+                        <h4>Приклад</h4>
+                        <div class="code-box">
+                            <pre><code data-expect="error">нехай а буде 10
+показати а поділити 0</code></pre>
+                        </div>
+                        <p>У відповідь:</p>
+                        <div class="code-box">
+                            <pre><code>Помилка виконання (рядок 2): Ділення на нуль</code></pre>
+                        </div>
+                        <h4>Види помилок</h4>
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Вид</th>
+                                    <th>Коли трапляється</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Лексична</td>
+                                    <td>невідомий символ, незакритий рядок, неузгоджений відступ</td>
+                                </tr>
+                                <tr>
+                                    <td>Синтаксична</td>
+                                    <td>порушена структура інструкції, забуте <code>буде</code>, зайвий відступ</td>
+                                </tr>
+                                <tr>
+                                    <td>Помилка виконання</td>
+                                    <td>невідома змінна чи функція, ділення на нуль, індекс поза межами,
+                                    невідповідність типів, не та кількість аргументів</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h4>Код виходу</h4>
+                        <p>Інтерпретатор повертає <code>0</code>, якщо все пройшло добре, і <code>1</code>,
+                        якщо сталася будь-яка помилка. Завдяки цьому U++ можна використовувати у скриптах:</p>
+                        <div class="code-box">
+                            <pre><code>upp програма.upp
+echo %ERRORLEVEL%</code></pre>
+                        </div>
+                        <h4>Часті непорозуміння</h4>
+                        <ul>
+                            <li><code>стає</code> змінює лише <strong>вже оголошену</strong> змінну — нову створює <code>нехай</code>.</li>
+                            <li>Два цілі числа діляться націло: <code>7 поділити 2</code> дає <code>3</code>.</li>
+                            <li>Тіло <code>якщо</code> та <code>поки</code> має бути з відступом.</li>
+                            <li>Глибина рекурсії обмежена 200 викликами.</li>
+                        </ul>
                     </div>
 
                 </div>

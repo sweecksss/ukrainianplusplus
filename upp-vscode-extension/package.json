@@ -1,8 +1,8 @@
 {
   "name": "upp-vscode-extension",
   "displayName": "U++ (Ukrainian Plus Plus) Language Support",
-  "description": "Syntax highlighting for the U++ (Ukrainian Plus Plus) experimental language.",
-  "version": "0.0.1",
+  "description": "Syntax highlighting, snippets and a run command for the U++ (Ukrainian Plus Plus) language.",
+  "version": "0.2.0",
   "publisher": "Vladsweecks",
   "engines": {
     "vscode": "^1.80.0"

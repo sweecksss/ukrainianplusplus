@@ -13,26 +13,40 @@ function showTab(tabId) {
         targetPanel.classList.add('active');
     }
 
-    // Highlight button
-    event.currentTarget.classList.add('active');
+    // Highlight the button that points at this panel. Раніше тут був
+    // глобальний event.currentTarget — він працює лише всередині
+    // inline-обробника і падає, якщо showTab викликати з коду.
+    buttons.forEach(b => {
+        const onclick = b.getAttribute('onclick') || '';
+        if (onclick.includes(`'${tabId}'`)) {
+            b.classList.add('active');
+        }
+    });
 }
 
 function copyHeroCode() {
-    const codeText = `# Програма на мові U++
-нехай а буде 10
-нехай б буде 10
+    // Беремо текст із самого блоку, а не з копії в коді: інакше кнопка
+    // копіює застарілий приклад щоразу, коли правлять розмітку.
+    const codeElement = document.getElementById('hero-code');
+    if (!codeElement) return;
 
-якщо а дорівнює б то
-    показати "Привіт, Україно! 🎉"`;
+    const codeText = codeElement.textContent;
+    const btn = document.querySelector('.copy-btn');
 
     navigator.clipboard.writeText(codeText).then(() => {
-        const btn = document.querySelector('.copy-btn');
+        if (!btn) return;
         const orig = btn.textContent;
         btn.textContent = 'Скопійовано! ✓';
         btn.style.color = '#34d399';
         setTimeout(() => {
             btn.textContent = orig;
             btn.style.color = '';
+        }, 2000);
+    }).catch(() => {
+        if (!btn) return;
+        btn.textContent = 'Не вдалося скопіювати';
+        setTimeout(() => {
+            btn.textContent = 'Копіювати';
         }, 2000);
     });
 }
