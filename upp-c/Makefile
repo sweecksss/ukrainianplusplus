@@ -5,6 +5,9 @@ CC      ?= cc
 CFLAGS  ?= -std=c11 -Wall -Wextra -Wpedantic -O2
 LDFLAGS ?=
 
+PREFIX  ?= /usr/local
+BINDIR  ?= $(PREFIX)/bin
+
 BIN     := upp
 SRC     := main.c upp_common.c upp_tokens.c upp_lexer.c upp_value.c \
            upp_ast.c upp_parser.c upp_interpreter.c
@@ -29,6 +32,10 @@ debug: clean $(BIN)
 
 test: $(BIN)
 	python3 ../tests/run_tests.py --exe ./$(BIN)
+
+install: $(BIN)
+	install -d $(DESTDIR)$(BINDIR)
+	install -m 755 $(BIN) $(DESTDIR)$(BINDIR)/$(BIN)
 
 clean:
 	rm -f $(OBJ) $(BIN)
