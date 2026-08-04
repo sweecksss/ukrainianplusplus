@@ -166,8 +166,10 @@
                     <button class="doc-tab" onclick="showTab('tab-loops')">🔄 Цикли (поки)</button>
                     <button class="doc-tab" onclick="showTab('tab-strings')">✍️ Рядки</button>
                     <button class="doc-tab" onclick="showTab('tab-lists')">📋 Списки</button>
-                    <button class="doc-tab" onclick="showTab('tab-funcs')">⚙️ Функції</button>
+                    <button class="doc-tab" onclick="showTab('tab-funcs')">⚙️ Функції (def)</button>
                     <button class="doc-tab" onclick="showTab('tab-errors')">⚠️ Помилки</button>
+                    <button class="doc-tab" onclick="showTab('tab-tools')">🧩 VS Code та Інструменти</button>
+                    <button class="doc-tab" onclick="showTab('tab-cheatsheet')">📝 Повний довідник (Шпаргалка)</button>
                 </div>
 
                 <!-- Tab Content -->
@@ -577,6 +579,177 @@ echo %ERRORLEVEL%</code></pre>
                             <li>Тіло <code>якщо</code> та <code>поки</code> має бути з відступом.</li>
                             <li>Глибина рекурсії обмежена 200 викликами.</li>
                         </ul>
+                    </div>
+
+                    <!-- Tab: VS Code & Tools -->
+                    <div id="tab-tools" class="tab-panel">
+                        <h3>🧩 VS Code та Розширення</h3>
+                        <p>Офіційне розширення додає підсвітку синтаксису U++, автодоповнення сніпетів та можливість запускати програми у 1 клік.</p>
+                        
+                        <h4>1. Встановлення розширення (.vsix)</h4>
+                        <ul>
+                            <li>Завантажте файл <code>upp-vscode-extension.vsix</code> за допомогою кнопки на головній сторінці.</li>
+                            <li>У Visual Studio Code відкрийте вкладку <strong>Extensions</strong> (<code>Ctrl+Shift+X</code>).</li>
+                            <li>Натисніть на меню <code>...</code> (Views and More Actions) у правому верхньому кутку панелі та оберіть <strong>Install from VSIX...</strong>.</li>
+                            <li>Оберіть завантажений файл. Також можна встановити з консолі:</li>
+                        </ul>
+                        <div class="code-box">
+                            <pre><code>code --install-extension upp-vscode-extension.vsix</code></pre>
+                        </div>
+
+                        <h4>2. Можливості розширення</h4>
+                        <ul>
+                            <li><strong>Підсвітка синтаксису:</strong> Підсвічує ключові слова (<code>нехай</code>, <code>функція</code>, <code>якщо</code>, <code>поки</code>), оператори та рядки з підстановкою.</li>
+                            <li><strong>Сніпети:</strong> Введіть <code>нехай</code>, <code>якщо</code>, <code>поки</code> чи <code>функція</code> та натисніть <code>Tab</code> для автоматичної вставки шаблону коду.</li>
+                            <li><strong>Запуск у 1 клік:</strong> Кнопка <strong>Run U++</strong> в активному вікні редактора виконує поточний файл через <code>upp.exe</code>.</li>
+                        </ul>
+
+                        <h4>3. Інтерпретатор та консоль</h4>
+                        <p>Утиліта <code>upp</code> — це швидкий, нативний файл без залежностей. Основні команди:</p>
+                        <div class="code-box">
+                            <pre><code>upp програма.upp            # запуск файлу програми
+upp --version              # версія інтерпретатора U++</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Cheat Sheet -->
+                    <div id="tab-cheatsheet" class="tab-panel">
+                        <h3>📝 Повний синтаксичний довідник (Шпаргалка)</h3>
+                        <p>Усі ключові слова, оператори та типи даних мови U++ зі зіставленням з іншими мовами програмування.</p>
+
+                        <h4>1. Конструкції мови</h4>
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Конструкція U++</th>
+                                    <th>Аналог у Python</th>
+                                    <th>Аналог у C / C++</th>
+                                    <th>Опис</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>нехай х буде 10</code></td>
+                                    <td><code>x = 10</code></td>
+                                    <td><code>int x = 10;</code></td>
+                                    <td>Оголошення нової змінної</td>
+                                </tr>
+                                <tr>
+                                    <td><code>х стає 20</code></td>
+                                    <td><code>x = 20</code></td>
+                                    <td><code>x = 20;</code></td>
+                                    <td>Зміна значення наявної змінної</td>
+                                </tr>
+                                <tr>
+                                    <td><code>показати "Текст"</code></td>
+                                    <td><code>print("Текст")</code></td>
+                                    <td><code>printf("Текст\n");</code></td>
+                                    <td>Вивід значення у консоль</td>
+                                </tr>
+                                <tr>
+                                    <td><code>якщо х більше 0 то</code></td>
+                                    <td><code>if x > 0:</code></td>
+                                    <td><code>if (x > 0) {</code></td>
+                                    <td>Умовне розгалуження</td>
+                                </tr>
+                                <tr>
+                                    <td><code>інакше то</code></td>
+                                    <td><code>else:</code></td>
+                                    <td><code>} else {</code></td>
+                                    <td>Альтернативна гілка умови</td>
+                                </tr>
+                                <tr>
+                                    <td><code>поки х менше 5 то</code></td>
+                                    <td><code>while x < 5:</code></td>
+                                    <td><code>while (x < 5) {</code></td>
+                                    <td>Цикл із передумовою</td>
+                                </tr>
+                                <tr>
+                                    <td><code>функція f(a, b)</code></td>
+                                    <td><code>def f(a, b):</code></td>
+                                    <td><code>type f(type a, type b) {</code></td>
+                                    <td>Оголошення функції</td>
+                                </tr>
+                                <tr>
+                                    <td><code>повернути рез</code></td>
+                                    <td><code>return res</code></td>
+                                    <td><code>return res;</code></td>
+                                    <td>Повернення значення з функції</td>
+                                </tr>
+                                <tr>
+                                    <td><code># коментар</code></td>
+                                    <td><code># comment</code></td>
+                                    <td><code>// comment</code></td>
+                                    <td>Однорядковий коментар</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4>2. Оператори</h4>
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Категорія</th>
+                                    <th>Ключові слова U++</th>
+                                    <th>Оператори</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Арифметика</td>
+                                    <td><code>додати</code>, <code>відняти</code>, <code>помножити</code>, <code>поділити</code></td>
+                                    <td><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Порівняння</td>
+                                    <td><code>більше</code>, <code>менше</code>, <code>дорівнює</code>, <code>не дорівнює</code>, <code>не більше</code>, <code>не менше</code></td>
+                                    <td><code>></code>, <code><</code>, <code>==</code>, <code>!=</code>, <code><=</code>, <code>>=</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Логіка</td>
+                                    <td><code>і</code> (або <code>та</code>), <code>або</code>, <code>не</code></td>
+                                    <td><code>&&</code>, <code>||</code>, <code>!</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4>3. Вбудовані функції</h4>
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Функція</th>
+                                    <th>Призначення</th>
+                                    <th>Приклад</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>довжина(х)</code></td>
+                                    <td>Довжина рядка або списку</td>
+                                    <td><code>довжина("привіт")</code> &rarr; <code>6</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ввести([підказка])</code></td>
+                                    <td>Зчитування рядка з консолі</td>
+                                    <td><code>ввести("Імʼя: ")</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>число(х)</code></td>
+                                    <td>Перетворення у числові значення</td>
+                                    <td><code>число("15")</code> &rarr; <code>15</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>текст(х)</code></td>
+                                    <td>Перетворення у текстовий рядок</td>
+                                    <td><code>текст(42)</code> &rarr; <code>"42"</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>додати_до(список, ел)</code></td>
+                                    <td>Додавання елемента у список</td>
+                                    <td><code>додати_до(спис, 10)</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                 </div>
