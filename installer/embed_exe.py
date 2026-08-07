@@ -28,7 +28,10 @@ def main() -> int:
         for i in range(0, len(data), BYTES_PER_LINE)
     ]
 
-    TARGET.write_text(",\n".join(lines) + "\n", encoding="ascii")
+    # newline="\n" явно: інакше на Windows Python перетворив би кожен
+    # перенос на CRLF і файл щоразу «змінювався» б цілком.
+    with open(TARGET, "w", encoding="ascii", newline="\n") as handle:
+        handle.write(",\n".join(lines) + "\n")
     print(f"{TARGET.name}: {len(data)} байт")
     return 0
 
