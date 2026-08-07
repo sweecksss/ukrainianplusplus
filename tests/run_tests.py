@@ -109,6 +109,51 @@ def run_case(exe: Path, upp_file: Path) -> tuple[int, str, str]:
     return proc.returncode, stdout, stderr
 
 
+# Поведінка самих аргументів командного рядка золотими файлами не
+# покривається, а помилятися там легко: колись будь-який прапорець
+# мовчки друкував довідку й повертав 0.
+CLI_CHECKS = [
+    (["--version"], 0, "U++ (Ukrainian Plus Plus)", None),
+    (["-v"], 0, "U++ (Ukrainian Plus Plus)", None),
+    (["--help"], 0, "Використання:", None),
+    (["-h"], 0, "Використання:", None),
+    ([], 1, "Використання:", None),
+    (["--невідомий"], 1, None, "Невідомий аргумент"),
+    (["нема-такого-файлу.upp"], 1, None, "Не вдалося відкрити файл"),
+]
+
+
+def run_cli_checks(exe: Path) -> tuple[int, list[str]]:
+    passed = 0
+    failed: list[str] = []
+
+    for argv, want_code, want_out, want_err in CLI_CHECKS:
+        label = "upp " + (" ".join(argv) if argv else "(без аргументів)")
+        proc = subprocess.run([str(exe), *argv], capture_output=True, timeout=20)
+
+        out = proc.stdout.decode("utf-8", errors="replace")
+        err = proc.stderr.decode("utf-8", errors="replace")
+
+        problems = []
+        if proc.returncode != want_code:
+            problems.append(f"код виходу: очікувалось {want_code}, отримано {proc.returncode}")
+        if want_out and want_out not in out:
+            problems.append(f"у виводі немає {want_out!r}")
+        if want_err and want_err not in err:
+            problems.append(f"у помилках немає {want_err!r}")
+
+        if problems:
+            failed.append(label)
+            print(f"ПРОВАЛ  {label}")
+            for problem in problems:
+                print(f"  {problem}")
+        else:
+            passed += 1
+            print(f"ОК      {label}")
+
+    return passed, failed
+
+
 def diff_block(title: str, expected: str, actual: str) -> list[str]:
     if expected == actual:
         return []
@@ -174,10 +219,18 @@ def main() -> int:
             passed += 1
             print(f"ОК      {case.name}")
 
+    # Прапорці командного рядка перевіряємо лише під час повного
+    # прогону: під час --update і фільтрації вони ні до чого.
+    if not args.update and not args.filter:
+        print()
+        cli_passed, cli_failed = run_cli_checks(exe)
+        passed += cli_passed
+        failed.extend(cli_failed)
+
     print()
     print(f"Пройдено: {passed}, провалено: {len(failed)}")
     if failed:
-        print("Провалені тести: " + ", ".join(failed))
+        print("Провалені: " + ", ".join(failed))
         return 1
     return 0
 

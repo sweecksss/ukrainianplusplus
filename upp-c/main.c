@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #ifdef _WIN32
 #  include <windows.h>
@@ -43,9 +44,17 @@ static char* read_file(const char* path) {
     return buffer;
 }
 
-static void print_usage(void) {
+static void print_version(void) {
     printf("U++ (Ukrainian Plus Plus) %s\n", UPP_VERSION);
-    printf("Використання: upp <файл.upp>\n");
+}
+
+static void print_usage(void) {
+    print_version();
+    printf("\n");
+    printf("Використання:\n");
+    printf("  upp <файл.upp>     виконати програму\n");
+    printf("  upp --version      показати версію\n");
+    printf("  upp --help         показати цю довідку\n");
 }
 
 int main(int argc, char* argv[]) {
@@ -61,9 +70,24 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    if (argv[1][0] == '-') {
+    const char* arg = argv[1];
+
+    if (strcmp(arg, "--version") == 0 || strcmp(arg, "-v") == 0) {
+        print_version();
+        return 0;
+    }
+
+    if (strcmp(arg, "--help") == 0 || strcmp(arg, "-h") == 0) {
         print_usage();
         return 0;
+    }
+
+    /* Раніше будь-який аргумент із дефісом мовчки друкував довідку й
+       повертав 0, тож одруківка у прапорці виглядала як успіх. */
+    if (arg[0] == '-') {
+        fprintf(stderr, "Невідомий аргумент '%s'\n\n", arg);
+        print_usage();
+        return 1;
     }
 
     char* source = read_file(argv[1]);
